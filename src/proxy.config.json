@@ -1,0 +1,11 @@
+{
+  "/api/*": {
+    "target": "http://localhost:5192",
+    "secure": false
+  },
+  "/api-rewrite/*": {
+    "target": "https://inventario.com",
+    "secure": false,
+    "pathRewrite": {"^/api-rewrite" : ""}
+  }
+}

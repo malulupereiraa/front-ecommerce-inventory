@@ -1,0 +1,132 @@
+<div class="row">
+  <div class="col-12">
+    <c-card class="mb-4">
+      <c-card-header>
+        <h3 class="mb-0">
+          {{ !this.edit && !this.view ? "NOVO PRODUTO" : this.edit ? "EDITAR PRODUTO" : "VISUALIZAR PRODUTO"}}
+        </h3>
+      </c-card-header>
+      <c-card-body>
+       <div class="row">
+        <div class="col-12">
+          <div class="register-form">
+            <form [formGroup]="form" (ngSubmit)="onSubmit()">
+              <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 mt-3">
+                  <div class="form-group">
+                    <label>
+                      <span appAsteriskForm [formGroup]="form" [controlName]="'name'" class="red"></span> Nome do Produto:
+                    </label>
+                    <input
+                      type="text"
+                      formControlName="name"
+                      class="form-control"
+                      [ngClass]="{ 'is-invalid': submitted && f['name'].errors }"
+                      (change)="validateFormOnRealTime()"
+                      [readonly]="view"
+                      id="nameCheck"
+                    />
+                    @if (submitted && f['name'].errors) {
+                    <div class="invalid-feedback">
+                      @if (f['name'].errors['required']) {
+                      <div id="nameRequired">"Nome do Produto" é Obrigatório</div>
+                      }
+                    </div>
+                    }
+                  </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 mt-3">
+
+                  <div class="form-group">
+                    <label><span appAsteriskForm [formGroup]="form" [controlName]="'reference'" class="red"></span> Referência:</label>
+                    <input
+                      type="number"
+                      formControlName="reference"
+                      class="form-control"
+                      [ngClass]="{ 'is-invalid': submitted && f['reference'].errors }"
+                      (change)="validateFormOnRealTime()"
+                      [readonly]="view"
+                      id="referenceCheck"
+                    />
+                    @if (submitted && f['reference'].errors) {
+                    <div class="invalid-feedback">
+                      @if (f['reference'].errors['required']) {
+                      <div id="referenceRequired">"Referência" é Obrigatório</div>
+                      }
+                      @if (f['reference'].errors['minlength']) {
+                      <div id="referenceMinLength">"Referência" deve conter pelo menos 6 Caracteres</div>
+                      }
+                      @if (f['reference'].errors['maxlength']) {
+                      <div id="referenceMaxLength">"Referência" não pode exceder 20 Caracteres</div>
+                      }
+                      @if (f['reference'].errors['pattern']) {
+                      <div id="referencePattern">"Referência" só pode conter Números Positivos</div>
+                      }
+                    </div>
+                    }
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 mt-3">
+                  <div class="form-group">
+                    <label><span appAsteriskForm [formGroup]="form" [controlName]="'qtd'" class="red"></span> Quantidade:</label>
+                    <input
+                      type="number"
+                      formControlName="qtd"
+                      class="form-control"
+                      [ngClass]="{ 'is-invalid': submitted && f['qtd'].errors }"
+                      (change)="validateFormOnRealTime()"
+                      [readonly]="view"
+                      id="qtdCheck"
+                    />
+                    @if (submitted && f['qtd'].errors) {
+                    <div class="invalid-feedback">
+                      @if (f['qtd'].errors['required']) {
+                      <div id="qtdRequired">"Quantidade" é Obrigatório</div>
+                      }
+                      @if (f['qtd'].errors['pattern']) {
+                      <div id="qtdPattern">"Quantidade" só pode conter Números Positivos</div>
+                      }
+                    </div>
+                    }
+                  </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 mt-3">
+                  <div class="form-group">
+                    <label><span appAsteriskForm [formGroup]="form" [controlName]="'price'" class="red"></span> Preço:</label>
+                    <input
+                      type="number"
+                      formControlName="price"
+                      class="form-control"
+                      [ngClass]="{ 'is-invalid': submitted && f['price'].errors }"
+                      (change)="validateFormOnRealTime()"
+                      [readonly]="view"
+                      id="priceCheck"
+                    />
+                    @if (submitted && f['price'].errors) {
+                    <div class="invalid-feedback">
+                      @if (f['price'].errors['required']) {
+                      <div id="priceRequired">"Preço" é Obrigatório</div>
+                      }
+                      @if (f['price'].errors['pattern']) {
+                      <div id="pricePattern">"Preço" só pode conter Números Positivos</div>
+                      }
+                    </div>
+                    }
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+       </div>
+      </c-card-body>
+      <c-card-footer class="text-medium-emphasis text-end">
+        <button mat-raised-button (click)="goBack()" class="btn btn-back">Voltar</button>
+        <button mat-raised-button (click)="onSubmit()" [disabled]="form.invalid" class="ms-2 btn btn-primary" *ngIf="!edit && !view">Cadastrar</button>
+        <button mat-raised-button (click)="updateProduct()" [disabled]="form.invalid" class="ms-2 btn btn-primary" *ngIf="edit">Editar</button>
+      </c-card-footer>
+    </c-card>
+  </div>
+</div>

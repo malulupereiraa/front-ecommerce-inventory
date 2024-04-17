@@ -1,0 +1,73 @@
+<div class="container-fluid h-100">
+  <div class="row h-100">
+    <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5 m-auto">
+      <c-card class="p-4 form-card">
+        <c-card-body>
+          <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <div class="row">
+              <div class="col-12 text-center">
+                <h1>Olá! Que bom ver você por aqui!</h1>
+                <img src="../../../assets/images/logo/LogoComplete.svg" width="300" height="180" />
+                <p class="text-body-secondary mt-4 fw-bold">Acesse sua Conta!</p>
+              </div>
+            </div>
+              <div class="row">
+                <div class="col-12 mt-3">
+                  <div class="form-group">
+                    <label>
+                      <span appAsteriskForm [formGroup]="form" [controlName]="'username'" class="red"></span> Usuário:
+                    </label>
+                    <input
+                      type="text"
+                      formControlName="username"
+                      class="form-control"
+                      [ngClass]="{ 'is-invalid': submitted && f['username'].errors }"
+                      (change)="validateFormOnRealTime()"
+                    />
+                    @if (submitted && f['username'].errors) {
+                    <div class="invalid-feedback">
+                      @if (f['username'].errors['required']) {
+                      <div>"Usuário" é Obrigatório</div>
+                      }
+                    </div>
+                    }
+                  </div>
+                </div>
+                <div class="col-12 mt-3">
+                  <div class="form-group">
+                    <label><span appAsteriskForm [formGroup]="form" [controlName]="'password'" class="red"></span> Senha:</label>
+                    <input
+                      type="password"
+                      formControlName="password"
+                      class="form-control"
+                      [ngClass]="{ 'is-invalid': submitted && f['password'].errors }"
+                      (change)="validateFormOnRealTime()"
+                    />
+                    @if (submitted && f['password'].errors) {
+                    <div class="invalid-feedback">
+                      @if (f['password'].errors['required']) {
+                      <div>"Senha" é Obrigatório</div>
+                      }
+                      @if (f['password'].errors['minlength']) {
+                      <div>"Senha" deve conter pelo menos 5 Caracteres</div>
+                      }
+                      @if (f['password'].errors['maxlength']) {
+                      <div>"Senha" não pode exceder 20 Caracteres</div>
+                      }
+                    </div>
+                    }
+                  </div>
+                </div>
+              </div>
+            <div class="row text-end mt-4">
+              <div class="col-12">
+                <button class="mb-3 btn btn-primary" mat-flat-button (click)="onSubmit()">Acessar</button>
+              </div>
+            </div>
+          </form>
+        </c-card-body>
+      </c-card>
+    </div>
+  </div>
+
+</div>

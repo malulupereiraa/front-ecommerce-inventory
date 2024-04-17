@@ -1,0 +1,83 @@
+<ng-container>
+  <c-container [fluid]="true" class="border-bottom px-4">
+    <button
+      [cSidebarToggle]="sidebarId"
+      cHeaderToggler
+      class="btn"
+      toggle="visible"
+      style="margin-inline-start: -14px;"
+    >
+      <svg cIcon name="cilMenu" size="lg"></svg>
+    </button>
+
+    <c-header-nav class="ms-auto ms-md-0">
+      <div class="nav-item py-1">
+        <div class="vr h-100 mx-2 text-body text-opacity-75"></div>
+      </div>
+      <ng-container *ngTemplateOutlet="themeDropdown" />
+      <div class="nav-item py-1">
+        <div class="vr h-100 mx-2 text-body text-opacity-75"></div>
+      </div>
+    </c-header-nav>
+  </c-container>
+  <c-container [fluid]="true" class="px-4">
+    <c-breadcrumb-router />
+  </c-container>
+</ng-container>
+
+<ng-template #themeDropdown>
+  <c-dropdown alignment="end" variant="nav-item">
+    <button [caret]="false" cDropdownToggle cTooltip="Mudar Modo" cTooltipPlacement="bottom">
+      @switch (colorMode()) {
+        @case ("dark") {
+          <svg cIcon name="cilMoon" size="lg"></svg>
+        }
+        @case ("auto") {
+          <svg cIcon name="cilContrast" size="lg"></svg>
+        }
+        @default {
+          <svg cIcon name="cilSun" size="lg"></svg>
+        }
+      }
+    </button>
+    <div cDropdownMenu>
+      <button
+        (click)="colorMode.set('light')"
+        [active]="colorMode()==='light'"
+        [routerLink]="[]"
+        cDropdownItem
+        class="d-flex align-items-center"
+      >
+        <svg cIcon class="me-2" name="cilSun" size="lg"></svg>
+        Modo Claro
+      </button>
+      <button
+        (click)="colorMode.set('dark')"
+        [active]="colorMode()==='dark'"
+        [routerLink]="[]"
+        cDropdownItem
+        class="d-flex align-items-center"
+      >
+        <svg cIcon class="me-2" name="cilMoon" size="lg"></svg>
+        Modo Escuro
+      </button>
+      <button
+        (click)="colorMode.set('auto')"
+        [active]="colorMode()==='auto'"
+        [routerLink]="[]"
+        cDropdownItem
+        class="d-flex align-items-center"
+      >
+        <svg cIcon class="me-2" name="cilContrast" size="lg"></svg>
+        Automático
+      </button>
+    </div>
+  </c-dropdown>
+  <button cHeaderToggler
+  class="btn"
+  toggle="visible"
+  (click)="logout()"
+  cTooltip="Sair" cTooltipPlacement="bottom">
+    <svg cIcon name="cilAccountLogout" size="lg"></svg>
+  </button>
+</ng-template>

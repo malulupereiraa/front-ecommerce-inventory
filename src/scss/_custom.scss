@@ -1,0 +1,56 @@
+// Here you can add other styles
+
+// custom .chartjs-tooltip-body-item padding
+@import "charts";
+
+// custom tweaks for scrollbar styling (wip)
+@import "scrollbar";
+
+ // custom calendar today cell color
+.calendar-cell.today {
+  --cui-calendar-cell-today-color: var(--cui-info) !important;
+}
+
+// custom select week cursor pointer
+.select-week .calendar-row.current {
+  cursor: pointer;
+}
+
+.btn {
+  border-radius: 40px!important;
+}
+
+.btn-primary {
+  background: #223a89!important;
+  color: #ffffff!important;
+}
+
+.btn-primary:disabled {
+  background: #626d92!important;
+  color: #ffffff!important;
+}
+
+.btn-primary:hover {
+  background: #ffffff!important;
+  border: 1px solid #223a89!important;
+  color: #223a89!important;
+}
+
+.btn-back {
+  border: 1px solid #ec641c!important;
+  color: #ec641c!important;
+}
+
+.btn-back:hover {
+  color: #ffffff!important;
+  background: #ec641c!important;
+}
+
+.red {
+  color: red;
+}
+
+input:read-only {
+  background-color: #ebebeb;
+}
+
