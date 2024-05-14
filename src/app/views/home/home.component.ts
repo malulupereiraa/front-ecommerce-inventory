@@ -18,7 +18,7 @@ export class HomeComponent {
     plugins:[dayGridPlugin, interactionPlugin],
     dateClick: (arg: any) => this.handleDateClick(arg),
     events: [
-      { title: 'Grande Dia?! ~Tomara!!~', date: '2024-04-19' },
+      { title: "Grande Dia?! ~Tomara!!~", date: '2024-05-17' },
     ],
     locale: 'pt-BR',
   };
